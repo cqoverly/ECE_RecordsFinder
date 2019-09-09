@@ -80,10 +80,10 @@ class MainManager(QWidget):
 
         # Set up start search button / reset search button layout
         start_reset_buttons_layout = QHBoxLayout()
-        start_button = QPushButton('Start Search')
-        start_button.setMaximumWidth(200)
-        start_button.clicked.connect(self.run_search)
-        start_reset_buttons_layout.addWidget(start_button)
+        self.start_button = QPushButton('Start Search', enabled=False)
+        self.start_button.setMaximumWidth(200)
+        self.start_button.clicked.connect(self.run_search)
+        start_reset_buttons_layout.addWidget(self.start_button)
         reset_button = QPushButton('Reset Search')
         reset_button.setMaximumWidth(150)
         reset_button.clicked.connect(self.reset_search)
@@ -100,21 +100,23 @@ class MainManager(QWidget):
 
         log.info('main_manager initialized.')
 
-    
-
     def enter_numbers(self):
         text = self.entry_textbox.toPlainText()
+        self.entry_textbox.setText(text)
         print(text)
         self.search_numbers = [n for n in text.split()]
-        print(search_numbers)
+        # print(self.search_numbers)
+        if self.report != 'NONE':
+            self.start_button.setEnabled(True)
 
     def get_report(self):
         print("Find Report")
         self.report = QFileDialog.getOpenFileName(self,
-    "Open CSV", os.environ['HOME'], "CSV Files (*.csv)")[0] 
+            "Open CSV", os.environ['HOME'], "CSV Files (*.csv)")[0] 
         print(self.report)
         self.search_label.setText(self.report)
         self.search_label.update()
+        self.start_button.setEnabled(True)
 
     def run_search(self):
         print('Run Search')
