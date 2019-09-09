@@ -6,6 +6,8 @@ from PyQt5.QtWidgets import QMainWindow, QTableWidget, QPushButton, QTableWidget
 import os
 import logging
 
+import search_logic as sl
+
 
 logging.basicConfig(level=os.environ.get('LOGLEVEL', 'DEBUG'))
 log = logging.getLogger('main_logger')
@@ -119,11 +121,13 @@ class MainManager(QWidget):
         self.start_button.setEnabled(True)
 
     def run_search(self):
-        print('Run Search')
+        sl.finder_main(self.search_numbers, self.report)
 
     def reset_search(self):
-        print('Reset')
-
+        self.search_numbers = []
+        self.report = 'NONE'
+        self.entry_textbox.clear()
+        self.search_label.setText(self.report)
 
 
 
@@ -132,4 +136,4 @@ if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
     window = MainWindow()
-    app.exec()
+    sys.exit(app.exec())
