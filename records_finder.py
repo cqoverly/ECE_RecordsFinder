@@ -128,6 +128,7 @@ class MainManager(QWidget):
         self.report = 'NONE'
         self.entry_textbox.clear()
         self.search_label.setText(self.report)
+        self.start_button.setEnabled(False)
 
 
 
