@@ -65,6 +65,7 @@ def finder_main(student_numbers, report_path):
     print(len(main_fields), len(main_records))
     retrieved_records = get_records(student_numbers, main_records)
     generate_records_csv(main_fields, retrieved_records)
+    return len(retrieved_records)
 
 if __name__ == '__main__':
 
