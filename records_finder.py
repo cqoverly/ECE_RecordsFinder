@@ -69,12 +69,16 @@ class MainManager(QWidget):
         report_layout = QVBoxLayout()
 
         # Set up section to select a report to search
-        search_layout = QHBoxLayout()
+        search_layout = QVBoxLayout()
         self.search_label = QLabel(self.report)
+        self.recs_to_search = QLabel('')
+        self.recs_found = QLabel('')
         search_button = QPushButton('Select Report')
         search_button.clicked.connect(self.get_report)
         search_button.setMaximumWidth(200)
         search_layout.addWidget(self.search_label)
+        search_layout.addWidget(self.recs_to_search)
+        search_layout.addWidget(self.recs_found)
         search_layout.addWidget(search_button)
 
         # Set up section to display 
@@ -121,7 +125,11 @@ class MainManager(QWidget):
         self.start_button.setEnabled(True)
 
     def run_search(self):
-        sl.finder_main(self.search_numbers, self.report)
+        number_of_found = sl.finder_main(self.search_numbers, self.report)
+        self.recs_to_search.setText(f'Searched for {len(self.search_numbers)} students')
+        self.recs_found.setText(f'Found {number_of_found} matching records.')
+        
+
 
     def reset_search(self):
         self.search_numbers = []
@@ -129,6 +137,8 @@ class MainManager(QWidget):
         self.entry_textbox.clear()
         self.search_label.setText(self.report)
         self.start_button.setEnabled(False)
+        self.recs_to_search.setText('')
+        self.recs_to_search.setText('')
 
 
 
