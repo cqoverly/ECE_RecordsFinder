@@ -1,5 +1,5 @@
 #! source /Users/cqoverly/Envs/pyqt5/bin/activate python3
-from PyQt5 import QtPrintSupport, QtGui
+from PyQt5 import QtPrintSupport, QtGui, QtCore
 
 from PyQt5.QtWidgets import QMainWindow, QTableWidget, QPushButton, QTableWidget, QHBoxLayout, QVBoxLayout, QWidget, QApplication, QLabel, QDateEdit, QFormLayout, QDialog, QLineEdit, QTableWidgetItem, QAbstractItemView, QDialog, QTextEdit, QFrame, QFileDialog
 
@@ -55,6 +55,7 @@ class MainManager(QWidget):
         self.entry_textbox = QTextEdit()
         self.entry_textbox.setMaximumWidth(200)
         self.entry_textbox.setFontPointSize(10)
+        self.entry_textbox.setAlignment(QtCore.Qt.AlignLeft)
         number_enter_button = QPushButton('Enter Numbers')
         number_enter_button.setFixedWidth(150)
         number_enter_button.clicked.connect(self.enter_numbers)
