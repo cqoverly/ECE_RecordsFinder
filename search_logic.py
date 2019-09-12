@@ -31,12 +31,17 @@ def make_number_list(text_file):
         return number_list
 
 
-def get_records(numbers, records): 
+def get_records(numbers, records, ix): 
     # match the numbers to numbers in the records and return matched records.
     matched_records = []
-    for rec in records:
-        if rec[0] in numbers:
-            matched_records.append(rec)
+    print(f'INDEX IS: {ix}')
+    try:
+        for rec in records:
+            if rec[ix] and rec[ix] in numbers:
+                matched_records.append(rec)
+    except IndexError:
+        print('END OF RECORDS REACHED')
+        pass
     print(f'Records to find: {len(numbers)}')
     print(f'Records found: {len(matched_records)}')
     return matched_records
@@ -60,10 +65,16 @@ def finder_main(student_numbers, report_path):
     # print('n\n\============= CHOOSE REPORT .CSV FILE =================\n')
     # student_numbers = make_number_list(numbers_file)
     # report_file = file_chooser.choose_file()
-
+    student_ix = 0
     main_fields, main_records = load_data(report_path)
+    for f in main_fields:
+        if f in ('student_no', 'Student Number', 'Student_Number'):
+            print(f)
+            student_ix = main_fields.index(f)
+            print(f'INDEX IS: {student_ix}')
+            break
     print(len(main_fields), len(main_records))
-    retrieved_records = get_records(student_numbers, main_records)
+    retrieved_records = get_records(student_numbers, main_records, student_ix)
     generate_records_csv(main_fields, retrieved_records)
     return len(retrieved_records)
 
