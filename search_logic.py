@@ -71,7 +71,7 @@ def finder_main(student_numbers, report_path):
         if f in ('student_no', 'Student Number', 'Student_Number'):
             print(f)
             student_ix = main_fields.index(f)
-            print(f'INDEX IS: {student_ix}')
+            print(f'{f} INDEX IS: {student_ix}')
             break
     print(len(main_fields), len(main_records))
     retrieved_records = get_records(student_numbers, main_records, student_ix)

@@ -110,9 +110,7 @@ class MainManager(QWidget):
     def enter_numbers(self):
         text = self.entry_textbox.toPlainText()
         self.entry_textbox.setText(text)
-        print(text)
         self.search_numbers = [n for n in text.split()]
-        # print(self.search_numbers)
         print(f'Searching for {len(self.search_numbers)} students.')
         if self.report != 'NONE':
             self.start_button.setEnabled(True)
