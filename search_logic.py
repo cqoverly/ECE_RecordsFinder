@@ -73,7 +73,7 @@ def finder_main(student_numbers, report_path):
             student_ix = main_fields.index(f)
             print(f'{f} INDEX IS: {student_ix}')
             break
-    print(len(main_fields), len(main_records))
+    # print(len(main_fields), len(main_records))
     retrieved_records = get_records(student_numbers, main_records, student_ix)
     generate_records_csv(main_fields, retrieved_records)
     return len(retrieved_records)
@@ -81,7 +81,6 @@ def finder_main(student_numbers, report_path):
 if __name__ == '__main__':
 
     finder_main()
-
 
     # print('\n\n============= CHOOSE NUMBERS .TXT FILE =================\n')
     # numbers_file = file_chooser.choose_file()
